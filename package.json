@@ -1,0 +1,88 @@
+{
+	"name": "beautyAmp",
+	"displayName": "AMPscript Beautifier",
+	"description": "Beautify (prettify) AMPscript for Marketing Cloud.",
+	"version": "0.3.0",
+	"publisher": "filipbostik",
+	"author": {
+		"name": "filipbostik"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fib-at-isobar/beautyAmp.git"
+	},
+	"icon": "images/beautifierIcon.png",
+	"engines": {
+		"vscode": "^1.43.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:AMPscript"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"languages": [
+			{
+				"id": "AMPscript",
+				"aliases": [
+					"AMPscript"
+				],
+				"extensions": [
+					"amp"
+				]
+			}
+		],
+		"configuration": {
+			"Title": "AMPscript Beautifier",
+			"properties": {
+				"beautyAmp.capitalizeSet": {
+					"type": "boolean",
+					"default": true,
+					"description": "Use upper case characters for 'SET' keywords (false for lowercase)."
+				},
+				"beautyAmp.capitalizeVar": {
+					"type": "boolean",
+					"default": true,
+					"description": "Use upper case characters for 'VAR' keywords (false for lowercase)."
+				},
+				"beautyAmp.capitalizeAndOrNot": {
+					"type": "boolean",
+					"default": true,
+					"description": "Use upper case characters for 'AND', 'OR', 'NOT' keywords (false for lowercase)."
+				},
+				"beautyAmp.capitalizeIfFor": {
+					"type": "boolean",
+					"default": true,
+					"description": "Use upper case characters for 'IF' and 'FOR' blocks keywords (false for lowercase)."
+				},
+				"beautyAmp.maxParametersPerLine": {
+					"type": "number",
+					"default": 4,
+					"description": "How many method parameters can be located on one line (creates new lines if overflown)."
+				}
+			}
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"test": "node ./test/runTest.js"
+	},
+	"dependencies": {
+		"lodash": "^4.17.15"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.1",
+		"@types/node": "^12.12.41",
+		"@types/vscode": "^1.43.0",
+		"eslint": "^6.8.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.0.1",
+		"prettier": "2.0.5",
+		"typescript": "^3.9.3",
+		"vscode-test": "^1.3.0"
+	}
+}

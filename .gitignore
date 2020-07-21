@@ -1,0 +1,17 @@
+node_modules
+.vscode-test/
+
+vsc-extension-quickstart.md
+.vscodeignore
+jsconfig.json
+package-lock.json
+.eslintrc.json
+
+.vscode/settings.json
+
+*.amp
+
+*.txt
+
+*.vsix
+!beautyAmp-0.3.0.vsix
