@@ -1,8 +1,8 @@
 # AMPScript Beautifier
 
-Format/Beautify/Prettify your AMPscript with this extension.
+Format (Beautify/Prettify) your SFMC AMPscript with this extension.
 
-Originaly developed for Isobar Switzerland and now released to SFMC Developer community.
+Originaly developed with Isobar Switzerland and now available to the developer community.
 
 ## Features
 
