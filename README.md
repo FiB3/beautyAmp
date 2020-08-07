@@ -9,6 +9,8 @@ Originaly developed with Isobar Switzerland and now available to the developer c
 * Automatic formatting (indentation, methods, etc.).
 * Setting of Case-sensitivity of the keywords.
 
+![Beautifier](https://github.com/fib-at-isobar/beautyAmp/blob/master/images/beautyAmp.gif?raw=true)
+
 ## Extension Settings
 
 This extension contributes the following settings:
@@ -19,6 +21,8 @@ This extension contributes the following settings:
 * `beautyAmp.capitalizeSet`: Use upper case characters for 'SET' keywords (false for lowercase).
 * `beautyAmp.capitalizeAndOrNot`: Use upper case characters for 'AND', 'OR', 'NOT' keywords (false for lowercase).
 * `beautyAmp.capitalizeIfFor`: Use upper case characters for 'IF' and 'FOR' blocks keywords (false for lowercase).
+
+Default values can be found in Features Contributions.
 
 ## Known Issues
 
