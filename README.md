@@ -9,7 +9,14 @@ Originaly developed with Isobar Switzerland and now available to the developer c
 * Automatic formatting (indentation, methods, etc.).
 * Setting of Case-sensitivity of the keywords.
 
-![Beautifier](https://github.com/fib-at-isobar/beautyAmp/blob/master/images/beautyAmp.gif?raw=true)
+## Usage
+
+1. Mark your file as AMPscript (store as `.amp` or using the `Language Mode`)
+2. Run `Format Document` commad.
+
+![Beautifier](https://raw.githubusercontent.com/fib-at-isobar/beautyAmp/master/images/beautyAmp.gif)
+
+The format command can also run automatically if your settings allow for it (settings: `editor.formatOnSave`).
 
 ## Extension Settings
 

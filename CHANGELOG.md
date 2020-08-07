@@ -3,6 +3,13 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.3.1] - 2020-08-07
+### Added
+- Usage section in ReadMe and Gif showcasing the extension
+- License
+
+### Fixed
+
 ## [0.3.0] - 2020-07-22
 ### Added
 - 1st official release of the extension.
