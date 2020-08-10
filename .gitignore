@@ -16,4 +16,5 @@ methodSplitTester.js
 *.txt
 
 *.vsix
-!beautyAmp-0.3.0.vsix
+# !beautyAmp-0.3.0.vsix
+!beautyAmp-0.3.1.vsix

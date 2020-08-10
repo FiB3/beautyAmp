@@ -8,3 +8,5 @@ vsc-extension-quickstart.md
 **/.eslintrc.json
 
 images/beautyAmp.gif
+
+*.vsix

@@ -11,8 +11,8 @@ Originaly developed with Isobar Switzerland and now available to the developer c
 
 ## Usage
 
-1. Mark your file as AMPscript (store as `.amp` or using the `Language Mode`)
-2. Run `Format Document` commad.
+1. Mark your file as AMPscript (save as `.amp` or using the `Language Mode` selector)
+2. Run `Format Document` command.
 
 ![Beautifier](https://raw.githubusercontent.com/fib-at-isobar/beautyAmp/master/images/beautyAmp.gif)
 
