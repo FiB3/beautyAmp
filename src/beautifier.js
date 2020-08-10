@@ -1,4 +1,5 @@
 const _ = require('lodash');
+const formatters = require('./formatters');
 
 module.exports = {
 
@@ -265,22 +266,23 @@ class CodeBlock {
   }
 
   formatMethod(methodStr, methodIndent) {
-    const commaBreaker = /,(?=(?:[^\"\'\(\)]*[\"\'\(\)][^\"\'\(\)]*[\"\'\(\)])*[^\"\'\(\)]*$)/gi;
+    // TODO: replace following regex with one that's not going to cause the issue #3
+    // const commaBreaker = /,(?=(?:[^\"\'\(\)]*[\"\'\(\)][^\"\'\(\)]*[\"\'\(\)])*[^\"\'\(\)]*$)/gi;
     const methodsDetect = /(\w+)\((.*)\)/gi;
 
     methodStr = methodStr.trim();
     const parenthesisStart = methodStr.indexOf("(");
     const methodName = methodStr.substr(0, parenthesisStart);
     let parameters = methodStr.substr(parenthesisStart + 1, methodStr.length - parenthesisStart - 2);
-    // console.log(methodName + '--' + parameters);
-    let parametersList = parameters.split(commaBreaker);
+    console.log(methodName + '--' + parameters);
+    let parametersList = formatters.splitParameters(parameters); //parameters.split(commaBreaker);
 
     parametersList.forEach((param, i, parametersList) => {
       let paramCopy = param.trim();
       // console.log(`...`,paramCopy);
 
       if (methodsDetect.test(paramCopy)) {
-        // console.log(`Nested method: ${methodIndent}`);
+        console.log(`Nested method: ${methodIndent}`);
         paramCopy = this.formatMethod(paramCopy, methodIndent + 1);
       }
       parametersList[i] = paramCopy;

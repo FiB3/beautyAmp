@@ -9,7 +9,8 @@
 - License
 
 ### Fixed
-- method formatting bug
+- big which lead to incomplete method parameter formatting
+-
 
 ## [0.3.0] - 2020-07-22
 ### Added

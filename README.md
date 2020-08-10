@@ -35,6 +35,5 @@ Default values can be found in Features Contributions.
 
 * Statements and For iterations are not fully formatted,
 * NOT is not formatted
-* There are rare cases when function parameters are not formatted properly.
 * Function and Variable names are not handled.
 * HTML beautifier is currently not included.

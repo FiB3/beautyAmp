@@ -8,6 +8,8 @@ package-lock.json
 .eslintrc.json
 
 .vscode/settings.json
+methodParamRegEx.js
+methodSplitTester.js
 
 *.amp
 
