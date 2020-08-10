@@ -270,12 +270,10 @@ class CodeBlock {
     // const commaBreaker = /,(?=(?:[^\"\'\(\)]*[\"\'\(\)][^\"\'\(\)]*[\"\'\(\)])*[^\"\'\(\)]*$)/gi;
     const methodsDetect = /(\w+)\((.*)\)/gi;
 
-    methodStr = methodStr.trim();
-    const parenthesisStart = methodStr.indexOf("(");
-    const methodName = methodStr.substr(0, parenthesisStart);
-    let parameters = methodStr.substr(parenthesisStart + 1, methodStr.length - parenthesisStart - 2);
-    console.log(methodName + '--' + parameters);
-    let parametersList = formatters.splitParameters(parameters); //parameters.split(commaBreaker);
+    let methodSplit = formatters.splitMethodParams(methodStr);
+    let parameters = methodSplit[1];
+    let methodEnd = methodSplit[2];
+    let parametersList = formatters.splitParameters(parameters);
 
     parametersList.forEach((param, i, parametersList) => {
       let paramCopy = param.trim();
@@ -288,9 +286,14 @@ class CodeBlock {
       parametersList[i] = paramCopy;
     }, this);
 
-    parameters = this.joinMethodParameters(parametersList, methodIndent); //parametersList.join(', ');
-    // console.log('...', `${methodName}(${parameters})`);
-    return `${methodName}(${parameters})`;
+    parameters = this.joinMethodParameters(parametersList, methodIndent);
+    // to be sure, that method ending does not contain another method:
+    if (methodsDetect.test(methodEnd)) {
+      console.log(`Nested method in methodEnd! ${methodIndent}`);
+      methodEnd = this.formatMethod(methodEnd, 0);
+    }
+    // return:
+    return `${methodSplit[0]}${parameters}${methodEnd}`;
   }
 
   joinMethodParameters(parametersList, methodIndent) {

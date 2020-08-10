@@ -6,11 +6,11 @@
 ## [0.3.1] - 2020-08-07
 ### Added
 - Usage section in ReadMe and Gif showcasing the extension
-- License
+- initial license (BSD)
 
 ### Fixed
-- big which lead to incomplete method parameter formatting
--
+- bug which lead to incomplete method parameter formatting
+- bug breaking IFF statement
 
 ## [0.3.0] - 2020-07-22
 ### Added
