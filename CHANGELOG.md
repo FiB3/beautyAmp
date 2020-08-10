@@ -9,6 +9,7 @@
 - License
 
 ### Fixed
+- method formatting bug
 
 ## [0.3.0] - 2020-07-22
 ### Added
