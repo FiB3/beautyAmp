@@ -448,17 +448,17 @@ class CodeBlock {
   findComments(lines) {
     let newLines = []; // structure: keepBreaking: boolean, content: string
   
-    const commentBreaker = /(\/\*.+?\*\/|<!--.*?-->)/gi;
+    const commentBreaker = /(\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->)/gi;
     let parts = lines.split(commentBreaker);
   
     parts.forEach((line) => {
-      console.log('//////\n', line);
       if (line.trim() !== '') {
         const lineBlock = {
           keepBreaking: true,
           content: line
         };
         if (commentBreaker.test(line)) {
+          console.log('//////\n', line);
           lineBlock.keepBreaking = false;
         }
         newLines.push(lineBlock);
@@ -587,12 +587,32 @@ class CodeBlock {
   }
 
   makeOneLiner() {
+    const commentBreaker = /(\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->)/gi;
+    let parts = this.lines.split(commentBreaker);
+    let lines = [];
+    // console.log(parts);
+
     if (typeof this.lines === 'string') {
-      let parts = this.lines.split(this.delimeter);
-      this.lines = parts.join(' ');
+      parts.forEach((part) => {
+        
+        if (commentBreaker.test(part)) {
+          console.log('skip: ', part);
+        } else {
+          let codeParts = part.split(this.delimeter);
+          part = codeParts.join(' ');
+        }
+        lines.push(part);
+      })
+      this.lines = lines.join(' ');
     } else {
       this.lines = this.lines.join(' ');
     }
+    // if (typeof this.lines === 'string') {
+    //   let parts = this.lines.split(this.delimeter);
+    //   this.lines = parts.join(' ');
+    // } else {
+    //   this.lines = this.lines.join(' ');
+    // }
   }
 
   // expects separated lines, returns integer with the change of indentation (nesting)

@@ -3,6 +3,11 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.3.2] - 2020-10-28
+### Added
+- Improved to the Tabs/Spaces behaviour, more in line with editor wide settings.
+- Fix to the commenting issue (when comments have been changed to one-lined)
+
 ## [0.3.1] - 2020-08-07
 ### Added
 - Usage section in ReadMe and Gif showcasing the extension
