@@ -33,7 +33,13 @@ function activate(context) {
       // 	const htmlFormatting = commands.executeCommand('editor.action.formatDocument');
       console.log("AMPscript Beautifying running.");
       const setup = vscode.workspace.getConfiguration("beautyAmp");
-      console.log(setup);
+      const vsCodeEditorSetup = vscode.workspace.getConfiguration("editor");
+      // console.log(vsCodeEditorSetup);
+      const editorSetup = {
+        tabSize: vsCodeEditorSetup.tabSize,
+        insertSpaces: vsCodeEditorSetup.insertSpaces
+      };
+      console.log('SETUP:', setup, editorSetup);
 
       // get document as an array of strings:
       let lines = getLinesAsText(document);
@@ -42,7 +48,7 @@ function activate(context) {
       lines = beautifier.cutBlanksAtStartEnd(lines);
       // get code blocks:
       console.log("getCodeBlocks");
-      const blocks = beautifier.getCodeBlocks(lines, undefined, setup);
+      const blocks = beautifier.getCodeBlocks(lines, undefined, setup, editorSetup);
       // process nesting of the blocks:
       console.log("processNesting");
       beautifier.processNesting(blocks);

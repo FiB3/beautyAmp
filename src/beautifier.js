@@ -13,7 +13,7 @@ module.exports = {
     return newLines;
   },
 
-  getCodeBlocks(lines, lineDelimeter, settings) {
+  getCodeBlocks(lines, lineDelimeter, settings, editorSetup) {
     const delimeter = lineDelimeter !== undefined ? lineDelimeter : '\n';
     const fullText = lines.join(delimeter);
     let blocks = [];
@@ -30,10 +30,10 @@ module.exports = {
     
     // merge both arrays into one final using the CodeBlocks:
     for (let i = 0; i < htmlBlocks.length - 1; i++) {
-      blocks.push(new CodeBlock(htmlBlocks[i].trim(), false, delimeter, lineDelimeter, settings));
-      blocks.push(new CodeBlock(ampBlocks[i].trim(), true, delimeter, lineDelimeter, settings));
+      blocks.push(new CodeBlock(htmlBlocks[i].trim(), false, delimeter, settings, editorSetup));
+      blocks.push(new CodeBlock(ampBlocks[i].trim(), true, delimeter, settings, editorSetup));
     }
-    blocks.push(new CodeBlock(htmlBlocks[htmlBlocks.length - 1].trim(), false, delimeter, lineDelimeter, settings));
+    blocks.push(new CodeBlock(htmlBlocks[htmlBlocks.length - 1].trim(), false, delimeter, settings, editorSetup));
 
     return blocks;
   },
@@ -85,9 +85,12 @@ module.exports = {
 }
 
 class CodeBlock {
-  constructor(lines, isAmp, delimeter, indentationSign, setup) {
+  constructor(lines, isAmp, delimeter, setup, editorSetup) {
     this.delimeter = delimeter === undefined ? '\n' : delimeter;
-    this.indentator = indentationSign === undefined ? '\t' : indentationSign;
+
+    this.indentator = editorSetup.insertSpaces ? ' '.repeat(editorSetup.tabSize) : '\t';
+    console.log(`Indentation Sign: "${this.indentator}". Use Spaces: ${editorSetup.insertSpaces}, width: ${editorSetup.tabSize}`);
+    // this.indentator = indentationSign === undefined ? '\t' : indentationSign;
     this.indentMarker = '=>';
 
     this.lines = lines;
@@ -449,6 +452,7 @@ class CodeBlock {
     let parts = lines.split(commentBreaker);
   
     parts.forEach((line) => {
+      console.log('//////\n', line);
       if (line.trim() !== '') {
         const lineBlock = {
           keepBreaking: true,
@@ -633,7 +637,7 @@ class CodeBlock {
       // how many are there? Only from the beginning!!!
       let i = 0;
       while (line.startsWith(this.indentMarker) && i < 20) {
-        newLine += '\t';
+        newLine += this.indentator; // method indent char
         line = line.substring(this.indentMarker.length, line.length);
         i++;
       }
