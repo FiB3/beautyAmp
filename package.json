@@ -71,7 +71,7 @@
 		"test": "node ./test/runTest.js"
 	},
 	"dependencies": {
-		"lodash": "^4.17.15"
+		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
 		"@types/glob": "^7.1.1",

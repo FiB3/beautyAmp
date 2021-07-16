@@ -17,7 +17,7 @@ module.exports = {
     const delimeter = lineDelimeter !== undefined ? lineDelimeter : '\n';
     const fullText = lines.join(delimeter);
     let blocks = [];
-    
+
     const blockRegEx = /%%\[.*?\]%%/gis;
 
     // get matches as code blocks:
@@ -27,7 +27,7 @@ module.exports = {
     // split by block regex:
     let htmlBlocks = fullText.split(blockRegEx);
     // console.log('HTML blocks: ', htmlBlocks);
-    
+
     // merge both arrays into one final using the CodeBlocks:
     for (let i = 0; i < htmlBlocks.length - 1; i++) {
       blocks.push(new CodeBlock(htmlBlocks[i].trim(), false, delimeter, settings, editorSetup));
@@ -137,7 +137,7 @@ class CodeBlock {
           lineTemp = this.runStatements(lineTemp, i);
           lines[i] = lineTemp;
         }, this);
-        
+
       }
     } else {
       // checks on non-AMP-blocks (HTML/output AMP):
@@ -147,10 +147,10 @@ class CodeBlock {
 
   formatForDeclaration(line, i) {
     const forDeclaration = /(FOR)\s+(.*)\s+(DO)/gi;
-    
+
     let _this = this;
     if (forDeclaration.test(line)) {
-      return line.replace(forDeclaration, function(match, p1, p2, p3) {
+      return line.replace(forDeclaration, function (match, p1, p2, p3) {
         return _this.formatFor(p1, p2, p3);
       });
     }
@@ -176,24 +176,35 @@ class CodeBlock {
 
     let _this = this;
     if (declaration.test(iterator)) {
-      return iterator.replace(declaration, function(match, p1, p2, p3) {
+      return iterator.replace(declaration, function (match, p1, p2, p3) {
         const toWord = _this.capitalizeIfFor ? p2.toUpperCase() : p2.toLowerCase();
         return _this.formatFor(p1, toWord, p3);
       });
     }
-    return iterator;    
+    return iterator;
   }
 
   formatForNext(line, i) {
     const forCounterCheck = /((NEXT)[\t\ ]+(\S+)|(NEXT))/gi;
-    
+    console.log('... HEY NEXT!!');
+
     let _this = this;
     if (forCounterCheck.test(line)) {
       console.log(`..."${line}"`);
-      return line.replace(forCounterCheck, function(match, p1, p2, p3) {
-        return _this.formatNextIteration(p2, p3);
-      });
+      try {
+        return line.replace(forCounterCheck, function (match, p1, p2, p3) {
+          // console.log('====>', match, p1, p2, p3);
+          if (p2 && p3) {
+            return _this.formatNextIteration(p2, p3);
+          } else {
+            return p1;
+          }
+        });
+      } catch (err) {
+        console.log('!ERROR:: ', err);
+      }
     }
+    console.log('... STILL HERE!!');
     return line;
   }
 
@@ -213,7 +224,7 @@ class CodeBlock {
     } else {
       // console.log(`=> no counter`);
       return `${nextKeyword}`;
-    }    
+    }
   }
 
   formatVarDeclaration(line, i) {
@@ -259,7 +270,7 @@ class CodeBlock {
 
     if (methodsDetect.test(line)) {
       const _this = this;
-      return line.replace(methodsDetect, function(match, p1, p2) {
+      return line.replace(methodsDetect, function (match, p1, p2) {
         let method = _this.formatMethod(p2, 0);
         // console.log(`${i}: ${method}`);
         return `${p1}${method}`;
@@ -314,14 +325,14 @@ class CodeBlock {
 
     return params;
   }
-  
+
   runStatements(line, i) {
     const statementRegEx = /^\s*(IF|ELSEIF)\s+(.*)\s+(THEN)\s*$/gi;
-    
+
     if (statementRegEx.test(line)) {
       // console.log(i, ': OK :', line);
       let _this = this;
-      return line.replace(statementRegEx, function(match, p1, p2, p3) {
+      return line.replace(statementRegEx, function (match, p1, p2, p3) {
         return _this.formatIf(p1, p2, p3);
       });
     }
@@ -330,11 +341,11 @@ class CodeBlock {
 
   formatElseAndEndifLine(line, i) {
     const elseOrEndifCheck = /[\t\ ]*(ENDIF|ELSE)[\t\ ]*/gi;
-    
+
     let _this = this;
     if (elseOrEndifCheck.test(line)) {
       console.log('ELSE:', line);
-      return line.replace(elseOrEndifCheck, function(match, p1) {
+      return line.replace(elseOrEndifCheck, function (match, p1) {
         return _this.formatElseAndEndif(p1);
       });
     }
@@ -368,7 +379,7 @@ class CodeBlock {
     // split by AND/OR:
     let parts = statement.split(reg);
     parts.forEach((part, i, parts) => {
-      let partTemp = part.trim();      
+      let partTemp = part.trim();
       if (partTemp.toLowerCase() === 'and' || partTemp.toLowerCase() === 'or') {
         if (this.capitalizeAndOrNot) {
           partTemp = partTemp.toUpperCase();
@@ -381,7 +392,7 @@ class CodeBlock {
 
       parts[i] = partTemp;
     }, this);
-    
+
     return parts.join(' ');
   }
 
@@ -418,19 +429,19 @@ class CodeBlock {
     let _this = this;
     if (ifOrElseifCheck.test(this.lines)) {
       // this.lines = this.lines.replace(ifOrElseifCheck, '$1 $2 $3 $4 $5');
-      this.lines = this.lines.replace(ifOrElseifCheck, function(match, p1, p2, p3, p4, p5) {
+      this.lines = this.lines.replace(ifOrElseifCheck, function (match, p1, p2, p3, p4, p5) {
         return `${p1} ${_this.formatIf(p2, p3, p4)} ${p5}`;
       });
     } else if (elseOrEndifCheck.test(this.lines)) {
-      this.lines = this.lines.replace(elseOrEndifCheck, function(match, p1, p2, p3) {
+      this.lines = this.lines.replace(elseOrEndifCheck, function (match, p1, p2, p3) {
         return `${p1} ${_this.formatElseAndEndif(p2)} ${p3}`;
       });
     } else if (forDeclarationCheck.test(this.lines)) {
-      this.lines = this.lines.replace(forDeclarationCheck, function(match, p1, p2, p3, p4, p5) {
+      this.lines = this.lines.replace(forDeclarationCheck, function (match, p1, p2, p3, p4, p5) {
         return `${p1} ${_this.formatFor(p2, p3, p4)} ${p5}`;
       });
     } else if (forCounterCheck.test(this.lines)) {
-      this.lines = this.lines.replace(forCounterCheck, function(match, p1, p2, p3, p4) {
+      this.lines = this.lines.replace(forCounterCheck, function (match, p1, p2, p3, p4) {
         return `${p1} ${_this.formatNextIteration(p2, p3)} ${p4}`;
       });
     }
@@ -447,10 +458,10 @@ class CodeBlock {
 
   findComments(lines) {
     let newLines = []; // structure: keepBreaking: boolean, content: string
-  
+
     const commentBreaker = /(\/\*[\s\S]*?\*\/|<!--[\s\S]*?-->)/gi;
     let parts = lines.split(commentBreaker);
-  
+
     parts.forEach((line) => {
       if (line.trim() !== '') {
         const lineBlock = {
@@ -458,13 +469,12 @@ class CodeBlock {
           content: line
         };
         if (commentBreaker.test(line)) {
-          console.log('//////\n', line);
+          console.log('//comment =>\n', line, '\n<= comment end');
           lineBlock.keepBreaking = false;
         }
         newLines.push(lineBlock);
       }
     });
-  
     return newLines;
   }
 
@@ -538,18 +548,21 @@ class CodeBlock {
 
     lines.forEach((line) => {
       if (line.keepBreaking) {
+        console.log('LINES BREAK:', line.content);
         // normal piece of code - break it:
         lineChanges = line.content;
         for (let i in breakers) {
           const breakRegEx = breakers[i].reg;
           let replaceWith = (breakers[i].noNewLine ? '' : this.delimeter) + breakers[i].replace;
-          
+
           // while there are stuff to change - for cases, when matches can be overlaping:
           let counter = 0;
-          while (breakRegEx.test(lineChanges) && counter++ < 3) {
-            // console.log(`==> ${breakers[i].name}:  ${lineChanges.match(breakRegEx)}`);
+
+          let lineChanged = breakRegEx.test(lineChanges);
+          if (lineChanged) { console.log("--->", breakers[i].name, ' ==> ', lineChanged); }
+          while (lineChanged && counter++ < 2) {
             // if (breakers[i].name === 'for') { console.log(`==> `, lineChanges.match(breakRegEx)); } 
-            if (breakers[i].name === 'methods-after-value') { console.log(`==> `, lineChanges.match(breakRegEx)); }      
+            // if (breakers[i].name === 'methods-after-value') { console.log(`==> `, lineChanges.match(breakRegEx)); }
             lineChanges = lineChanges.replace(breakRegEx, replaceWith);
           }
         }
@@ -594,7 +607,7 @@ class CodeBlock {
 
     if (typeof this.lines === 'string') {
       parts.forEach((part) => {
-        
+
         if (commentBreaker.test(part)) {
           console.log('skip: ', part);
         } else {
@@ -715,7 +728,7 @@ class CodeBlock {
         // line = `||${lineCopy}||`;
         // lineCopy = this.getIndentation(currentIndent) + lineCopy;
         lineCopy = this.getIndentation(currentIndent) + this.getMethodIndentation(lineCopy);
-        
+
       }
       // console.log(`${i}: ${inBlockIndent}`);
       lines[i] = lineCopy;
@@ -746,7 +759,7 @@ class CodeBlock {
       this.lines = this.getIndentation() + this.lines;
     }
     // this.lines = `${this.nestModifier}/${this.nestLevel} => ${this.lines}`;
-    
+
     return this.lines;
   }
 }
