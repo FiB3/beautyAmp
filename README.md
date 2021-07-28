@@ -2,7 +2,7 @@
 
 Format (Beautify/Prettify) your SFMC AMPscript with this extension.
 
-Originaly developed with Isobar Switzerland and now available to the developer community.
+Originaly developed with Merkle DACH (former Isobar Switzerland) and now available to the developer community.
 
 ## Features
 

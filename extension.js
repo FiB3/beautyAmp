@@ -1,15 +1,10 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
-const beautifier = require("./src/beautifier");
+const beautifier = require("beauty-amp-core");
 
+const loggerOn = false;
 // const prettier = require("prettier");
-
-/*
-	TODO:
-	[ ] beautify of AMPscript
-	[ ] run HTML beautify as well (disable via settings?)
-*/
 
 /**
  * @param {vscode.ExtensionContext} context
@@ -28,33 +23,25 @@ function activate(context) {
      * @return A set of text edits or a thenable that resolves to such. The lack of a result can be
      * signaled by returning `undefined`, `null`, or an empty array.
      */
-    provideDocumentFormattingEdits(document) {
+    provideDocumentFormattingEdits(document, formattingOptions) {
       // 	console.log('HTML Beautifying running.');
       // 	const htmlFormatting = commands.executeCommand('editor.action.formatDocument');
       console.log("AMPscript Beautifying running.");
       const setup = vscode.workspace.getConfiguration("beautyAmp");
-      const vsCodeEditorSetup = vscode.workspace.getConfiguration("editor");
-      // console.log(vsCodeEditorSetup);
+      
       const editorSetup = {
-        tabSize: vsCodeEditorSetup.tabSize,
-        insertSpaces: vsCodeEditorSetup.insertSpaces
+        tabSize: formattingOptions.tabSize,
+        insertSpaces: formattingOptions.insertSpaces
       };
       console.log('SETUP:', setup, editorSetup);
 
+      beautifier.setup(setup, editorSetup, { loggerOn: loggerOn });
+
       // get document as an array of strings:
       let lines = getLinesAsText(document);
-      // cut blank lines from beginning and end of the text:
-      console.log("cutBlanksAtStartEnd");
-      lines = beautifier.cutBlanksAtStartEnd(lines);
-      // get code blocks:
-      console.log("getCodeBlocks");
-      const blocks = beautifier.getCodeBlocks(lines, undefined, setup, editorSetup);
-      // process nesting of the blocks:
-      console.log("processNesting");
-      beautifier.processNesting(blocks);
-      console.log("returnAsLines");
-      const newLines = beautifier.returnAsLines(blocks);
-      console.log("rewriteDocument");
+
+      // run the beautify:
+      const newLines = beautifier.beautify(lines);
       return rewriteDocument(vscode, document, newLines);
     },
   });
@@ -81,6 +68,11 @@ exports.activate = activate;
 // this method is called when your extension is deactivated
 function deactivate() {}
 
+/**
+ * Get lines from the document (editor window).
+ * @param {} doc 
+ * @returns {Array}
+ */
 function getLinesAsText(doc) {
   console.log("Getting lines.");
   const lines = [];
@@ -90,6 +82,13 @@ function getLinesAsText(doc) {
   return lines;
 }
 
+/**
+ * Rewrite the whole active document (active window).
+ * @param {} vscode 
+ * @param {} doc 
+ * @param {Array} lines lines to input.
+ * @returns 
+ */
 function rewriteDocument(vscode, doc, lines) {
   console.log("Rewriting lines.");
   const startAtPosition = new vscode.Position(0, 0);
