@@ -3,6 +3,17 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+
+## [0.4.0] - 2021-07-28
+### Fixed
+- Bug on formatting IF-ELSE statements after a comment.
+- Bug on formatting "NEXT" keyword inside a string.
+- Detection of the Indentation Character (insertSpaces) and Tab Size (tabSize) of the editor.
+
+### Changed
+- Separation of formatting logic in order to increase quality.
+- Extension icon update.
+
 ## [0.3.2] - 2020-10-28
 ### Added
 - Improved to the Tabs/Spaces behaviour, more in line with editor wide settings.
