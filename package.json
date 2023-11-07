@@ -2,37 +2,46 @@
 	"name": "beautyAmp",
 	"displayName": "AMPscript Beautifier",
 	"description": "Beautify (prettify) AMPscript for Marketing Cloud.",
-	"version": "0.4.0",
+	"version": "0.5.0",
 	"publisher": "FiB",
 	"author": {
 		"name": "filipbostik"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/fib-at-isobar/beautyAmp.git"
+		"url": "https://github.com/FiB3/beautyAmpCore.git"
 	},
 	"icon": "images/beautifierIcon.png",
 	"engines": {
-		"vscode": "^1.43.0"
+		"vscode": "^1.77.0"
 	},
 	"categories": [
+    "Programming Languages",
+    "Formatters",
 		"Other"
 	],
+	"keywords": [
+    "ampscript", "amp",
+    "salesforce", "marketing cloud", "salesforce marketing cloud", "exacttarget", "sfmc", "mc",
+    "content builder", "cloud pages", "landing pages"
+  ],
 	"activationEvents": [
 		"onLanguage:AMPscript"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"languages": [
-			{
-				"id": "AMPscript",
-				"aliases": [
-					"AMPscript"
-				],
-				"extensions": [
-					"amp"
-				]
-			}
+      {
+        "id": "AMPscript",
+        "aliases": [
+            "AMPscript",
+            "ampscript"
+        ],
+        "extensions": [
+            ".amp",
+            ".ampscript"
+        ]
+      }
 		],
 		"configuration": {
 			"Title": "AMPscript Beautifier",
@@ -75,15 +84,14 @@
 		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.1",
-		"@types/node": "^12.12.41",
-		"@types/vscode": "^1.43.0",
-		"eslint": "^6.8.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.0.1",
 		"prettier": "2.0.5",
-		"typescript": "^3.9.3",
-		"vscode-test": "^1.3.0"
+		"@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "1.77.0",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^8.36.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0"
 	}
 }

@@ -2,12 +2,12 @@
 
 Format (Beautify/Prettify) your SFMC AMPscript with this extension.
 
-Originaly developed with Merkle DACH (former Isobar Switzerland) and now available to the developer community.
-
 ## Features
 
 * Automatic formatting (indentation, methods, etc.).
 * Setting of Case-sensitivity of the keywords.
+
+#### [ To simplify your SSJS (&AMPscript) dev even more, check me! ](https://marketplace.visualstudio.com/items?itemName=FiB.ssjs-vsc)
 
 ## Usage
 
@@ -31,9 +31,15 @@ This extension contributes the following settings:
 
 Default values can be found in Features Contributions.
 
+## Note:
+
+Originally developed with Merkle DACH (former Isobar Switzerland) and now available to the developer community.
+
 ## Known Issues
 
 * Statements and For iterations are not fully formatted,
 * NOT is not formatted
 * Function and Variable names are not handled.
 * HTML beautifier is currently not included.
+
+### [Issue Reporting on GitHub](https://github.com/FiB3/beautyAmp/issues)

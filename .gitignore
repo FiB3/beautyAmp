@@ -16,7 +16,8 @@ methodSplitTester.js
 *.txt
 
 *.vsix
-# !beautyAmp-0.3.0.vsix
-!beautyAmp-0.3.2.vsix
 .DS_Store
 BugsToFix.md
+
+TODO.md
+*.vsix
