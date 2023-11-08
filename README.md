@@ -7,7 +7,7 @@ Format (Beautify/Prettify) your SFMC AMPscript with this extension.
 * Automatic formatting (indentation, methods, etc.).
 * Setting of Case-sensitivity of the keywords.
 
-#### [ To simplify your SFMC Dev, follow me! ](https://marketplace.visualstudio.com/items?itemName=FiB.ssjs-vsc)
+#### [ To simplify your SFMC Dev click me! ](https://marketplace.visualstudio.com/items?itemName=FiB.ssjs-vsc)
 
 ## Usage
 
