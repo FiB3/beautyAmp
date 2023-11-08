@@ -3,12 +3,13 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
-## [0.5.0] - 2023-11-10
+## [0.5.0] - 2023-11-09
 ### Changed
 - Logo.
 
 ### Fixed
 - AMPscript languages support for other extensions.
+- Fixed bug, when formatting failed when SSJS Manager is installed.
 
 ## [0.4.0] - 2021-07-28
 ### Fixed

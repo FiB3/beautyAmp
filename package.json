@@ -9,39 +9,48 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/FiB3/beautyAmpCore.git"
+		"url": "https://github.com/FiB3/beautyAmp.git"
 	},
 	"icon": "images/beautifierIcon.png",
 	"engines": {
 		"vscode": "^1.77.0"
 	},
 	"categories": [
-    "Programming Languages",
-    "Formatters",
+		"Programming Languages",
+		"Formatters",
 		"Other"
 	],
 	"keywords": [
-    "ampscript", "amp",
-    "salesforce", "marketing cloud", "salesforce marketing cloud", "exacttarget", "sfmc", "mc",
-    "content builder", "cloud pages", "landing pages"
-  ],
+		"ampscript",
+		"amp",
+		"salesforce",
+		"marketing cloud",
+		"salesforce marketing cloud",
+		"exacttarget",
+		"sfmc",
+		"mc",
+		"content builder",
+		"cloud pages",
+		"landing pages"
+	],
 	"activationEvents": [
-		"onLanguage:AMPscript"
+		"onLanguage:AMPscript",
+		"onLanguage:ampscript"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"languages": [
-      {
-        "id": "AMPscript",
-        "aliases": [
-            "AMPscript",
-            "ampscript"
-        ],
-        "extensions": [
-            ".amp",
-            ".ampscript"
-        ]
-      }
+			{
+				"id": "AMPscript",
+				"aliases": [
+					"AMPscript",
+					"ampscript"
+				],
+				"extensions": [
+					".amp",
+					".ampscript"
+				]
+			}
 		],
 		"configuration": {
 			"Title": "AMPscript Beautifier",
@@ -80,18 +89,18 @@
 		"test": "node ./test/runTest.js"
 	},
 	"dependencies": {
-		"beauty-amp-core": "^0.3.7",
+		"beauty-amp-core2": "^0.3.8",
 		"lodash": "^4.17.21"
 	},
 	"devDependencies": {
-		"prettier": "2.0.5",
 		"@types/glob": "^8.1.0",
-    "@types/mocha": "^10.0.1",
-    "@types/node": "16.x",
-    "@types/vscode": "1.77.0",
-    "@vscode/test-electron": "^2.3.0",
-    "eslint": "^8.36.0",
-    "glob": "^8.1.0",
-    "mocha": "^10.2.0"
+		"@types/mocha": "^10.0.1",
+		"@types/node": "16.x",
+		"@types/vscode": "1.77.0",
+		"@vscode/test-electron": "^2.3.0",
+		"eslint": "^8.36.0",
+		"glob": "^8.1.0",
+		"mocha": "^10.2.0",
+		"prettier": "2.0.5"
 	}
 }

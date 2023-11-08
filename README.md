@@ -7,14 +7,14 @@ Format (Beautify/Prettify) your SFMC AMPscript with this extension.
 * Automatic formatting (indentation, methods, etc.).
 * Setting of Case-sensitivity of the keywords.
 
-#### [ To simplify your SSJS (&AMPscript) dev even more, check me! ](https://marketplace.visualstudio.com/items?itemName=FiB.ssjs-vsc)
+#### [ To simplify your SFMC Dev, follow me! ](https://marketplace.visualstudio.com/items?itemName=FiB.ssjs-vsc)
 
 ## Usage
 
 1. Mark your file as AMPscript (save as `.amp` or using the `Language Mode` selector)
 2. Run `Format Document` command.
 
-![Beautifier](https://raw.githubusercontent.com/fib-at-isobar/beautyAmp/master/images/beautyAmp.gif)
+![Beautifier](https://github.com/FiB3/beautyAmp/blob/493a2d95182d48dd3c951f59f4c52c4e850b2419/images/beautyAmp.gif)
 
 The format command can also run automatically if your settings allow for it (settings: `editor.formatOnSave`).
 

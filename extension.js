@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
-const beautifier = require("beauty-amp-core");
+const beautifier = require("beauty-amp-core2");
 
 const loggerOn = false;
 // const prettier = require("prettier");
@@ -13,57 +13,52 @@ function activate(context) {
   // https://stackoverflow.com/questions/49428648/multiple-formatters-in-visual-studio-code
 
   // formatter implemented using API
-  vscode.languages.registerDocumentFormattingEditProvider("AMPscript", {
-    /**
-     * Provide formatting edits for a whole document.
-     *
-     * @param document The document in which the command was invoked.
-     * @param options Options controlling formatting.
-     * @param token A cancellation token.
-     * @return A set of text edits or a thenable that resolves to such. The lack of a result can be
-     * signaled by returning `undefined`, `null`, or an empty array.
-     */
-    provideDocumentFormattingEdits(document, formattingOptions) {
-      // 	console.log('HTML Beautifying running.');
-      // 	const htmlFormatting = commands.executeCommand('editor.action.formatDocument');
-      console.log("AMPscript Beautifying running.");
-      const setup = vscode.workspace.getConfiguration("beautyAmp");
-      
-      const editorSetup = {
-        tabSize: formattingOptions.tabSize,
-        insertSpaces: formattingOptions.insertSpaces
-      };
-      console.log('SETUP:', setup, editorSetup);
+  vscode.languages.registerDocumentFormattingEditProvider("AMPscript", ampLanguageFormatter);
+  vscode.languages.registerDocumentFormattingEditProvider('ampscript', ampLanguageFormatter);
 
-      beautifier.setup(setup, editorSetup, { loggerOn: loggerOn });
-
-      // get document as an array of strings:
-      let lines = getLinesAsText(document);
-
-      // run the beautify:
-      const newLines = beautifier.beautify(lines);
-      return rewriteDocument(vscode, document, newLines);
-    },
-  });
-
-  let disposable = vscode.commands.registerCommand(
-    "extension.helloWorld",
-    function () {
-      prettier.formatWithCursor(" 1", { cursorOffset: 2, parser: "html" });
-      // vscode.window.showInformationMessage("Hello World!");
-      // try {
-      //   vscode.languages.setTextDocumentLanguage(document, "html");
-      // } catch (err) {
-      //   console.log(err);
-      // }
-      console.log('test');
-    }
-  );
-  context.subscriptions.push(disposable);
-
-  console.log('Congratulations, your extension "beautyAmp" is now active!');
+  console.log(`"beautyAmp" is active!`);
 }
 exports.activate = activate;
+
+var ampLanguageFormatter = {
+  /**
+   * Provide formatting edits for a whole document.
+   *
+   * @param document The document in which the command was invoked.
+   * @param options Options controlling formatting.
+   * @param token A cancellation token.
+   * @return A set of text edits or a thenable that resolves to such. The lack of a result can be
+   * signaled by returning `undefined`, `null`, or an empty array.
+   */
+  provideDocumentFormattingEdits(document, formattingOptions) {
+    // 	console.log('HTML Beautifying running.');
+    // 	const htmlFormatting = commands.executeCommand('editor.action.formatDocument');
+    console.log(`AMPscript Beautifying running for ${document.languageId}.`);
+    const setup = vscode.workspace.getConfiguration("beautyAmp");
+    
+    const editorSetup = {
+      tabSize: formattingOptions.tabSize,
+      insertSpaces: formattingOptions.insertSpaces
+    };
+    console.log('SETUP:', setup, editorSetup);
+
+    beautifier.setup(setup, editorSetup, { loggerOn: loggerOn });
+
+    // get document as an array of strings:
+    let lines = getLinesAsText(document);
+
+    // run the beautify:
+    let newLines;
+    try {
+      newLines = beautifier.beautify(lines);
+    } catch(err) {
+      console.log(`Error on Beautify:`, err);
+      vscode.window.showErrorMessage(`Error on formatting. Please, let us know in our GitHub issues.`);
+    }
+    console.log('Lines Beautified.');
+    return rewriteDocument(vscode, document, newLines);
+  },
+};
 
 // this method is called when your extension is deactivated
 function deactivate() {}
@@ -79,6 +74,7 @@ function getLinesAsText(doc) {
   for (let i = 0; i < doc.lineCount; i++) {
     lines.push(doc.lineAt(i).text);
   }
+  console.log("Got Lines");
   return lines;
 }
 
