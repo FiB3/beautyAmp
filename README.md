@@ -14,7 +14,7 @@ Format (Beautify/Prettify) your SFMC AMPscript with this extension.
 1. Mark your file as AMPscript (save as `.amp` or using the `Language Mode` selector)
 2. Run `Format Document` command.
 
-![Beautifier](https://github.com/FiB3/beautyAmp/blob/493a2d95182d48dd3c951f59f4c52c4e850b2419/images/beautyAmp.gif)
+![Beautifier](https://raw.githubusercontent.com/FiB3/beautyAmp/493a2d95182d48dd3c951f59f4c52c4e850b2419/images/beautyAmp.gif)
 
 The format command can also run automatically if your settings allow for it (settings: `editor.formatOnSave`).
 
