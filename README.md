@@ -40,6 +40,5 @@ Originally developed with Merkle DACH (former Isobar Switzerland) and now availa
 * Statements and For iterations are not fully formatted,
 * NOT is not formatted
 * Function and Variable names are not handled.
-* HTML beautifier is currently not included.
 
 ### [Issue Reporting on GitHub](https://github.com/FiB3/beautyAmp/issues)

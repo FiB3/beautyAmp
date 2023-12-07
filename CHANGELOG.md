@@ -3,6 +3,15 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.5.3] - 2023-12-07
+### Changed
+- Added HTML (and JS) formatting.
+- Improved formatting of comments.
+- Shows an error when HTML is malformed and cannot be formatting, formatting code for AMPscript only.
+
+### Fixed
+- Various AMPscript formatting issues.
+
 ## [0.5.0] - 2023-11-09
 ### Changed
 - Logo.

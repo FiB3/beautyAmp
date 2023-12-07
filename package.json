@@ -2,7 +2,7 @@
 	"name": "beautyAmp",
 	"displayName": "AMPscript Beautifier",
 	"description": "Beautify (prettify) AMPscript for Marketing Cloud.",
-	"version": "0.5.1",
+	"version": "0.5.3",
 	"publisher": "FiB",
 	"author": {
 		"name": "filipbostik"
@@ -89,7 +89,7 @@
 		"test": "node ./test/runTest.js"
 	},
 	"dependencies": {
-		"beauty-amp-core2": "^0.3.8",
+		"beauty-amp-core2": "^0.4.5",
 		"lodash": "^4.17.21"
 	},
 	"devDependencies": {

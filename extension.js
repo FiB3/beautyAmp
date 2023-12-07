@@ -30,7 +30,7 @@ var ampLanguageFormatter = {
    * @return A set of text edits or a thenable that resolves to such. The lack of a result can be
    * signaled by returning `undefined`, `null`, or an empty array.
    */
-  provideDocumentFormattingEdits(document, formattingOptions) {
+  async provideDocumentFormattingEdits(document, formattingOptions) {
     // 	console.log('HTML Beautifying running.');
     // 	const htmlFormatting = commands.executeCommand('editor.action.formatDocument');
     console.log(`AMPscript Beautifying running for ${document.languageId}.`);
@@ -50,7 +50,17 @@ var ampLanguageFormatter = {
     // run the beautify:
     let newLines;
     try {
-      newLines = beautifier.beautify(lines);
+      try {
+        // including HTML formatting
+        newLines = await beautifier.beautify(lines);
+      } catch(htmlError) {
+        if (htmlError.name == 'SyntaxError' && typeof(htmlError.message) == 'string') {
+          let errLine = htmlError.message.split('\n')?.[0] ? htmlError.message.split('\n')?.[0] : htmlError.message;
+          vscode.window.showErrorMessage(`Error on HTML formatting, Probably malformed HTML:\n\t` + errLine);
+          newLines = await beautifier.beautify(lines, false);
+          vscode.window.showInformationMessage(`Formatting without HTML finished.`);
+        }
+      } 
     } catch(err) {
       console.log(`Error on Beautify:`, err);
       vscode.window.showErrorMessage(`Error on formatting. Please, let us know in our GitHub issues.`);
