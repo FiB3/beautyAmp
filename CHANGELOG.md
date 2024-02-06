@@ -3,6 +3,10 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.5.4] - 2024-02-06
+### Fixed
+- Formatting of variables, strings, etc. that collided with key-words. E.g.: `SET @myNextVar = "my set variable".
+
 ## [0.5.3] - 2023-12-07
 ### Changed
 - Added HTML (and JS) formatting.
