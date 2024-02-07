@@ -2,10 +2,12 @@ node_modules
 .vscode-test/
 
 vsc-extension-quickstart.md
-# .vscodeignore
+.vscodeignore
 jsconfig.json
 package-lock.json
 .eslintrc.json
+
+out/
 
 .vscode/settings.json
 methodParamRegEx.js
@@ -18,6 +20,4 @@ methodSplitTester.js
 *.vsix
 .DS_Store
 BugsToFix.md
-
 TODO.md
-*.vsix

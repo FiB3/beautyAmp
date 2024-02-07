@@ -3,6 +3,10 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.5.5] - 2024-02-07
+### Changed
+- Bundled extension to decrease installer size.
+
 ## [0.5.4] - 2024-02-06
 ### Fixed
 - Formatting of variables, strings, etc. that collided with key-words. E.g.: `SET @myNextVar = "my set variable".

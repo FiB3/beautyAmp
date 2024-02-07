@@ -1,6 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
+const fs = require('fs');
 const beautifier = require("beauty-amp-core2");
 
 const loggerOn = false;
@@ -16,7 +17,8 @@ function activate(context) {
   vscode.languages.registerDocumentFormattingEditProvider("AMPscript", ampLanguageFormatter);
   vscode.languages.registerDocumentFormattingEditProvider('ampscript', ampLanguageFormatter);
 
-  console.log(`"beautyAmp" is active!`);
+  
+  console.log(`"beautyAmp@${getExtensionVersion()}" is active!`);
 }
 exports.activate = activate;
 
@@ -102,6 +104,16 @@ function rewriteDocument(vscode, doc, lines) {
   const oldRange = new vscode.Range(startAtPosition, endAtPosition);
 
   return [vscode.TextEdit.replace(oldRange, lines.join("\n"))];
+}
+
+function getExtensionVersion() {
+  try {
+    const packageJson = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf8'));
+    return packageJson.version;
+  } catch (err) {
+    console.log('Error on getExtensionVersion:', err);
+    return 'v0.?.?';
+  }
 }
 
 module.exports = {

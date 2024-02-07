@@ -2,7 +2,7 @@
 	"name": "beautyAmp",
 	"displayName": "AMPscript Beautifier",
 	"description": "Beautify (prettify) AMPscript for Marketing Cloud.",
-	"version": "0.5.4",
+	"version": "0.5.5",
 	"publisher": "FiB",
 	"author": {
 		"name": "filipbostik"
@@ -87,11 +87,12 @@
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
+		"vscode:prepublish": "npm run esbuild-base -- --minify",
+		"esbuild-base": "esbuild ./extension.js --bundle --outfile=out/main.js --external:* --format=cjs --platform=node",
 		"test": "node ./test/runTest.js"
 	},
 	"dependencies": {
-		"beauty-amp-core2": "^0.4.6",
-		"lodash": "^4.17.21"
+		"beauty-amp-core2": "^0.4.6"
 	},
 	"devDependencies": {
 		"@types/glob": "^8.1.0",
@@ -99,6 +100,7 @@
 		"@types/node": "16.x",
 		"@types/vscode": "1.77.0",
 		"@vscode/test-electron": "^2.3.0",
+		"esbuild": "^0.20.0",
 		"eslint": "^8.36.0",
 		"glob": "^8.1.0",
 		"mocha": "^10.2.0",

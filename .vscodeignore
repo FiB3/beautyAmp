@@ -9,6 +9,13 @@ vsc-extension-quickstart.md
 
 images/beautyAmp.gif
 
-*.vsix
+*.amp
 
+*.txt
+
+*.vsix
+.DS_Store
+BugsToFix.md
 TODO.md
+
+node_modules/**
