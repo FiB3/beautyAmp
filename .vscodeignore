@@ -18,4 +18,5 @@ images/beautyAmp.gif
 BugsToFix.md
 TODO.md
 
-node_modules/**
+# node_modules/**
+out/
