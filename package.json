@@ -2,7 +2,7 @@
 	"name": "beautyAmp",
 	"displayName": "AMPscript Beautifier",
 	"description": "Beautify (prettify) AMPscript for Marketing Cloud.",
-	"version": "0.5.7",
+	"version": "0.5.8",
 	"publisher": "FiB",
 	"author": {
 		"name": "filipbostik"
