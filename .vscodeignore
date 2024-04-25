@@ -18,5 +18,11 @@ images/beautyAmp.gif
 BugsToFix.md
 TODO.md
 
-# node_modules/**
+node_modules/**
 out/
+
+# exclude source files
+src/**
+extension.js
+webpack.config.js
+*.tgz

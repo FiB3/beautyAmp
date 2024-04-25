@@ -18,7 +18,7 @@ function activate(context) {
   vscode.languages.registerDocumentFormattingEditProvider('ampscript', ampLanguageFormatter);
 
   
-  console.log(`"beautyAmp@${getExtensionVersion()}" is active!`);
+  console.log(`beautyAmp@${getExtensionVersion()} is active!`);
 }
 exports.activate = activate;
 
@@ -108,7 +108,8 @@ function rewriteDocument(vscode, doc, lines) {
 
 function getExtensionVersion() {
   try {
-    const packageJson = JSON.parse(fs.readFileSync(__dirname + '/package.json', 'utf8'));
+    let fPath = __dirname.endsWith(`/dist`) ? __dirname + '/../package.json' : __dirname + '/package.json';
+    const packageJson = JSON.parse(fs.readFileSync(fPath, 'utf8'));
     return packageJson.version;
   } catch (err) {
     console.log('Error on getExtensionVersion:', err);

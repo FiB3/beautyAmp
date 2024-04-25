@@ -2,7 +2,7 @@
 	"name": "beautyAmp",
 	"displayName": "AMPscript Beautifier",
 	"description": "Beautify (prettify) AMPscript for Marketing Cloud.",
-	"version": "0.5.8",
+	"version": "0.5.10",
 	"publisher": "FiB",
 	"author": {
 		"name": "filipbostik"
@@ -38,7 +38,7 @@
 		"onLanguage:AMPscript",
 		"onLanguage:ampscript"
 	],
-	"main": "./extension.js",
+	"main": "./dist/extension",
 	"contributes": {
 		"languages": [
 			{
@@ -87,23 +87,26 @@
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
-		"vscode:prepublish": "npm run esbuild-base -- --minify",
-		"esbuild-base": "esbuild ./extension.js --bundle --outfile=out/main.js --external:* --format=cjs --platform=node",
-		"test": "node ./test/runTest.js"
+		"test": "node ./test/runTest.js",
+		"vscode:prepublish": "npm run package",
+		"webpack": "webpack --mode development",
+		"webpack-dev": "webpack --mode development --watch",
+		"package": "webpack --mode production --devtool hidden-source-map"
 	},
 	"dependencies": {
-		"beauty-amp-core2": "^0.4.6"
 	},
 	"devDependencies": {
+		"beauty-amp-core2": "0.4.7-beta.1",
+
 		"@types/glob": "^8.1.0",
 		"@types/mocha": "^10.0.1",
 		"@types/node": "16.x",
 		"@types/vscode": "1.77.0",
 		"@vscode/test-electron": "^2.3.0",
-		"esbuild": "^0.20.0",
-		"eslint": "^8.36.0",
+		"eslint": "^9.1.1",
 		"glob": "^8.1.0",
 		"mocha": "^10.2.0",
-		"prettier": "2.0.5"
+		"webpack": "^5.90.3",
+		"webpack-cli": "^5.1.4"
 	}
 }

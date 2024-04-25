@@ -7,16 +7,17 @@ jsconfig.json
 package-lock.json
 .eslintrc.json
 
-out/
-
 .vscode/settings.json
 methodParamRegEx.js
 methodSplitTester.js
 
+# exclude dist:
+dist/**
+out/
+
+# exclude various files:
 *.amp
-
 *.txt
-
 *.vsix
 .DS_Store
 BugsToFix.md
