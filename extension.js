@@ -5,19 +5,15 @@ const fs = require('fs');
 const beautifier = require("beauty-amp-core2");
 
 const loggerOn = false;
-// const prettier = require("prettier");
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-  // https://stackoverflow.com/questions/49428648/multiple-formatters-in-visual-studio-code
-
   // formatter implemented using API
   vscode.languages.registerDocumentFormattingEditProvider("AMPscript", ampLanguageFormatter);
   vscode.languages.registerDocumentFormattingEditProvider('ampscript', ampLanguageFormatter);
 
-  
   console.log(`beautyAmp@${getExtensionVersion()} is active!`);
 }
 exports.activate = activate;

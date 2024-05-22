@@ -13,7 +13,8 @@
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}"
 			],
-			"preLaunchTask": "npm: webpack"
+			"preLaunchTask": "npm: vscode:predev",
+			"internalConsoleOptions": "openOnSessionStart"
 		},
 		{
 			"name": "Extension Tests",

@@ -1,112 +1,111 @@
 {
-	"name": "beautyAmp",
-	"displayName": "AMPscript Beautifier",
-	"description": "Beautify (prettify) AMPscript for Marketing Cloud.",
-	"version": "0.5.10",
-	"publisher": "FiB",
-	"author": {
-		"name": "filipbostik"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/FiB3/beautyAmp.git"
-	},
-	"homepage": "https://fib3.vercel.app/ampscript",
-	"icon": "images/beautifierIcon.png",
-	"engines": {
-		"vscode": "^1.77.0"
-	},
-	"categories": [
-		"Programming Languages",
-		"Formatters",
-		"Other"
-	],
-	"keywords": [
-		"ampscript",
-		"amp",
-		"salesforce",
-		"marketing cloud",
-		"salesforce marketing cloud",
-		"exacttarget",
-		"sfmc",
-		"mc",
-		"content builder",
-		"cloud pages",
-		"landing pages"
-	],
-	"activationEvents": [
-		"onLanguage:AMPscript",
-		"onLanguage:ampscript"
-	],
-	"main": "./dist/extension",
-	"contributes": {
-		"languages": [
-			{
-				"id": "AMPscript",
-				"aliases": [
-					"AMPscript",
-					"ampscript"
-				],
-				"extensions": [
-					".amp",
-					".ampscript"
-				]
-			}
-		],
-		"configuration": {
-			"Title": "AMPscript Beautifier",
-			"properties": {
-				"beautyAmp.capitalizeSet": {
-					"type": "boolean",
-					"default": true,
-					"description": "Use upper case characters for 'SET' keywords (false for lowercase)."
-				},
-				"beautyAmp.capitalizeVar": {
-					"type": "boolean",
-					"default": true,
-					"description": "Use upper case characters for 'VAR' keywords (false for lowercase)."
-				},
-				"beautyAmp.capitalizeAndOrNot": {
-					"type": "boolean",
-					"default": true,
-					"description": "Use upper case characters for 'AND', 'OR', 'NOT' keywords (false for lowercase)."
-				},
-				"beautyAmp.capitalizeIfFor": {
-					"type": "boolean",
-					"default": true,
-					"description": "Use upper case characters for 'IF' and 'FOR' blocks keywords (false for lowercase)."
-				},
-				"beautyAmp.maxParametersPerLine": {
-					"type": "number",
-					"default": 4,
-					"description": "How many method parameters can be located on one line (creates new lines if overflown)."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"lint": "eslint .",
-		"pretest": "npm run lint",
-		"test": "node ./test/runTest.js",
-		"vscode:prepublish": "npm run package",
-		"webpack": "webpack --mode development",
-		"webpack-dev": "webpack --mode development --watch",
-		"package": "webpack --mode production --devtool hidden-source-map"
-	},
-	"dependencies": {
-	},
-	"devDependencies": {
-		"beauty-amp-core2": "0.4.7-beta.1",
-
-		"@types/glob": "^8.1.0",
-		"@types/mocha": "^10.0.1",
-		"@types/node": "16.x",
-		"@types/vscode": "1.77.0",
-		"@vscode/test-electron": "^2.3.0",
-		"eslint": "^9.1.1",
-		"glob": "^8.1.0",
-		"mocha": "^10.2.0",
-		"webpack": "^5.90.3",
-		"webpack-cli": "^5.1.4"
-	}
+  "name": "beautyAmp",
+  "displayName": "AMPscript Beautifier",
+  "description": "Beautify (prettify) AMPscript for Marketing Cloud.",
+  "version": "0.5.10",
+  "publisher": "FiB",
+  "author": {
+    "name": "filipbostik"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FiB3/beautyAmp.git"
+  },
+  "homepage": "https://fib3.vercel.app/ampscript",
+  "icon": "images/beautifierIcon.png",
+  "engines": {
+    "vscode": "^1.77.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Other"
+  ],
+  "keywords": [
+    "ampscript",
+    "amp",
+    "salesforce",
+    "marketing cloud",
+    "salesforce marketing cloud",
+    "exacttarget",
+    "sfmc",
+    "mc",
+    "content builder",
+    "cloud pages",
+    "landing pages"
+  ],
+  "activationEvents": [
+    "onLanguage:AMPscript",
+    "onLanguage:ampscript"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "languages": [
+      {
+        "id": "AMPscript",
+        "aliases": [
+          "AMPscript",
+          "ampscript"
+        ],
+        "extensions": [
+          ".amp",
+          ".ampscript"
+        ]
+      }
+    ],
+    "configuration": {
+      "Title": "AMPscript Beautifier",
+      "properties": {
+        "beautyAmp.capitalizeSet": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use upper case characters for 'SET' keywords (false for lowercase)."
+        },
+        "beautyAmp.capitalizeVar": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use upper case characters for 'VAR' keywords (false for lowercase)."
+        },
+        "beautyAmp.capitalizeAndOrNot": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use upper case characters for 'AND', 'OR', 'NOT' keywords (false for lowercase)."
+        },
+        "beautyAmp.capitalizeIfFor": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use upper case characters for 'IF' and 'FOR' blocks keywords (false for lowercase)."
+        },
+        "beautyAmp.maxParametersPerLine": {
+          "type": "number",
+          "default": 4,
+          "description": "How many method parameters can be located on one line (creates new lines if overflown)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js",
+    "vscode:prepublish": "node preBundle.js --bundlingOn; npm run package",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "vscode:predev": "node preBundle.js",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "beauty-amp-core2": "0.4.9",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "1.77.0",
+    "@vscode/test-electron": "^2.3.0",
+    "eslint": "^9.1.1",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
 }

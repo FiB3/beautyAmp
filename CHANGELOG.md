@@ -3,6 +3,15 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.5.10] - 2024-04-25
+### Changed
+- Using Prettify v3.
+- Bundled extension to decrease installer size.
+
+## [0.5.8] - 2024-02-13
+### Changed
+- Rollback of the bundled version, as bundling did not work in released version.
+
 ## [0.5.5] - 2024-02-07
 ### Changed
 - Bundled extension to decrease installer size.
