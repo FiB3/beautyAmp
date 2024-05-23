@@ -35,10 +35,16 @@ Default values can be found in Features Contributions.
 
 Originally developed with Merkle DACH (former Isobar Switzerland) and now available to the developer community.
 
+## Telemetry
+
+This extension is collecting some telemetry in order to allow for future improvements and bugfixes.  
+
+This extension respects your privacy: no personal information, API Keys nor script content is collected.
+Telemetry can be disabled on the VSCode level.
+
 ## Known Issues
 
 * Statements and For iterations are not fully formatted,
 * NOT is not formatted
-* Function and Variable names are not handled.
 
 ### [Issue Reporting on GitHub](https://github.com/FiB3/beautyAmp/issues)

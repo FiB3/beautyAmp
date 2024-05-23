@@ -4,6 +4,8 @@ const vscode = require("vscode");
 const fs = require('fs');
 const beautifier = require("beauty-amp-core2");
 
+const telemetry = require('./src/telemetry');
+
 const loggerOn = false;
 
 /**
@@ -14,7 +16,10 @@ function activate(context) {
   vscode.languages.registerDocumentFormattingEditProvider("AMPscript", ampLanguageFormatter);
   vscode.languages.registerDocumentFormattingEditProvider('ampscript', ampLanguageFormatter);
 
+  telemetry.init(context);
+
   console.log(`beautyAmp@${getExtensionVersion()} is active!`);
+  telemetry.log('activate');
 }
 exports.activate = activate;
 
@@ -51,19 +56,25 @@ var ampLanguageFormatter = {
       try {
         // including HTML formatting
         newLines = await beautifier.beautify(lines);
+        telemetry.log('formatDocument', { status: 'OK' });
       } catch(htmlError) {
         if (htmlError.name == 'SyntaxError' && typeof(htmlError.message) == 'string') {
           let errLine = htmlError.message.split('\n')?.[0] ? htmlError.message.split('\n')?.[0] : htmlError.message;
           vscode.window.showErrorMessage(`Error on HTML formatting, Probably malformed HTML:\n\t` + errLine);
           newLines = await beautifier.beautify(lines, false);
           vscode.window.showInformationMessage(`Formatting without HTML finished.`);
+          telemetry.log('formatDocument', { status: 'AMP-ONLY' });
+        } else {
+          telemetry.error('formatError', { error: err.name, message: err.message, status: `NEW-ERROR-PRETTIER` } );
         }
       } 
     } catch(err) {
       console.log(`Error on Beautify:`, err);
+      telemetry.error('formatError', { error: err.name, message: err.message, status: `NEW-ERROR-AMP-ONLY` } );
       vscode.window.showErrorMessage(`Error on formatting. Please, let us know in our GitHub issues.`);
     }
     console.log('Lines Beautified.');
+
     return rewriteDocument(vscode, document, newLines);
   },
 };

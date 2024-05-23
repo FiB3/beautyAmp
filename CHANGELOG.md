@@ -3,6 +3,13 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.5.11] - 2024-05-23
+### Fixed
+- multiple formatting issues, including broken Output/Print blocks
+
+### Added
+- Telemetry for better user support.
+
 ## [0.5.10] - 2024-04-25
 ### Changed
 - Using Prettify v3.
