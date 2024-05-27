@@ -2,7 +2,7 @@
   "name": "beautyAmp",
   "displayName": "AMPscript Beautifier",
   "description": "Beautify (prettify) AMPscript for Marketing Cloud.",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "publisher": "FiB",
   "author": {
     "name": "filipbostik"
@@ -38,7 +38,7 @@
     "onLanguage:AMPscript",
     "onLanguage:ampscript"
   ],
-  "main": "./extension",
+  "main": "./dist/extension",
   "contributes": {
     "languages": [
       {
@@ -101,7 +101,7 @@
     "@types/vscode": "1.77.0",
     "@vscode/extension-telemetry": "^0.9.6",
     "@vscode/test-electron": "^2.3.0",
-    "beauty-amp-core2": "0.4.9",
+    "beauty-amp-core2": "0.4.10",
     "eslint": "^9.1.1",
     "glob": "^8.1.0",
     "mocha": "^10.2.0",

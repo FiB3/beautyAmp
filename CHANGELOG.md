@@ -3,6 +3,10 @@
 ## [Unreleased]
 - In progress - see "Known Issues" section.
 
+## [0.5.12] - 2024-05-27
+### Fixed
+- `$` character formatting problems (causing duplication).
+
 ## [0.5.11] - 2024-05-23
 ### Fixed
 - multiple formatting issues, including broken Output/Print blocks
